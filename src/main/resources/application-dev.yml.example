@@ -1,0 +1,38 @@
+# Development Environment Configuration
+# Copy this file to application-dev.yml and update with your settings
+
+spring:
+  application:
+    name: auth-service
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: your_password_here
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8081
+
+# JWT Configuration
+jwt:
+  secret: your-development-secret-key-at-least-256-bits-long-change-this
+  access-token-expiration: 900000      # 15 minutes
+  refresh-token-expiration: 604800000  # 7 days
+  issuer: recn-platform
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.recn.platform.auth: DEBUG
+    org.springframework.security: DEBUG
+
